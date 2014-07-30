@@ -8,6 +8,7 @@ import tornado.web
 import tornado.escape
 from bson.objectid import ObjectId
 
+from utils import return_result
 
 os.environ['TZ'] = 'Asia/Shanghai'
 time.tzset()
@@ -59,5 +60,4 @@ class BaseHandler(tornado.web.RequestHandler):
 
     def get_current_user(self):
         token = self.get_secure_cookie('token')
-        member = self.db.members.find_one({'token': token})
-        return member
+        self.db.members.find_one({'token': token}, callback=return_result)
