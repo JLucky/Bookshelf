@@ -24,8 +24,8 @@
     {% block head %}{% end %}
 </head>
 <body>
-<div id="Top">
-    <div class="navbar-default navbar-fixed-top">
+<div id="header">
+    <div class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -60,7 +60,17 @@
         </div>
     </div>
 </div>
-<div id="Main">{% block Main %}{% end %}</div>
-<div id="Footer"></div>
+<div id="main">
+    {% block main %}
+    <div class="row">
+        <div class="col-md-12">
+            {% for type, msg in handler.get_message() %}
+            <div class="alert alert-{{ type }}" role="alert">{{ msg }}</div>
+            {% end %}
+        </div>
+    </div>
+    {% end %}
+</div>
+<div id="footer"></div>
 </body>
 </html>
