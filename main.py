@@ -29,7 +29,7 @@ class Application(tornado.web.Application):
             google_analytics = google_analytics.lstrip(),
             cookie_secret = cookie_secret,
             xsrf_cookies = True,
-            login_url = "/account/login",
+            login_url = "/account/signin",
             debug = Debug,
         )
         tornado.web.Application.__init__(self, urls.handlers, **settings)
